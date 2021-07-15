@@ -11,7 +11,7 @@ int main()
 
     ksiazkaAdresowa.rejestracjaUzytkownika();
     ksiazkaAdresowa.rejestracjaUzytkownika();
-    ksiazkaAdresowa.rejestracjaUzytkownika();
+
 
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
 
