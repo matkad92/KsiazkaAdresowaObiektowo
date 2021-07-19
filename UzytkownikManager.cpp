@@ -9,6 +9,7 @@ void UzytkownikManager::rejestracjaUzytkownika()
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
+
 }
 
 Uzytkownik UzytkownikManager::podajDaneNowegoUzytkownika()
@@ -74,5 +75,5 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
 
 void UzytkownikManager::wczytajUzytkownikowZPliku()
 {
-    plikZUzytkownikami.wczytajUzytkownikowZPliku(uzytkownicy);
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
