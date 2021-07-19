@@ -11,7 +11,7 @@ private :
     UzytkownikManager uzytkownikManager;
 
 public :
-    KsiazkaAdresowa();
+    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami);
     void rejestracjaUzytkownika();
     void wypiszWszystkichUzytkownikow();
 
