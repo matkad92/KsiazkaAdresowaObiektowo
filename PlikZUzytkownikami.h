@@ -21,6 +21,8 @@ class PlikZUzytkownikami
 public:
     PlikZUzytkownikami();
     void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
+    void wczytajUzytkownikowZPliku(vector <Uzytkownik> &uzytkownicy);
+    Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 };
 
 #endif
