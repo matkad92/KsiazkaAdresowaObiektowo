@@ -18,5 +18,9 @@ public :
     void logowanieUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
+    void wylogujUzytkownika ()
+    {
+        idZalogowanegoUzytkownika = 0;
+    }
 
 };
