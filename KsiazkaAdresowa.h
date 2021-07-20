@@ -17,5 +17,6 @@ public :
     void wypiszWszystkichUzytkownikow();
     void logowanieUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
+    void zmianaHaslaZalogowanegoUzytkownika();
 
 };
