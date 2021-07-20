@@ -16,7 +16,6 @@ class UzytkownikManager
 {
     int idZalogowanegoUzytkownika;
     vector <Uzytkownik> uzytkownicy;
-
     Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin( string login);
@@ -28,6 +27,7 @@ public:
     void rejestracjaUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
+    int logowanieUzytkownika();
 
 
 };

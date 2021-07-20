@@ -2,6 +2,7 @@
 
 KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikManager(nazwaPlikuZUzytkownikami)
 {
+    idZalogowanegoUzytkownika = 0;
     uzytkownikManager.wczytajUzytkownikowZPliku();
 }
 
@@ -19,3 +20,13 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
 {
     uzytkownikManager.wczytajUzytkownikowZPliku();
 }*/
+
+void KsiazkaAdresowa::logowanieUzytkownika()
+{
+    idZalogowanegoUzytkownika = uzytkownikManager.logowanieUzytkownika();
+}
+
+int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
