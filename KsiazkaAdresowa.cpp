@@ -1,8 +1,9 @@
 #include "KsiazkaAdresowa.h"
 
-KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikManager(nazwaPlikuZUzytkownikami) {
-    idZalogowanegoUzytkownika = 0;
-    uzytkownikManager.wczytajUzytkownikowZPliku();
+KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
+: uzytkownikManager(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+{
+    adresatManager = NULL; //trzeba od razu w konstruktorze na null ustawiac
 }
 
 void KsiazkaAdresowa::rejestracjaUzytkownika()
@@ -17,26 +18,54 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
 
 void KsiazkaAdresowa::logowanieUzytkownika()
 {
-    idZalogowanegoUzytkownika = uzytkownikManager.logowanieUzytkownika();
-    adresatManager.logowanieUzytkownika(idZalogowanegoUzytkownika);
+    uzytkownikManager.logowanieUzytkownika();
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+       adresatManager = new AdresatManager(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikManager.pobierzIdZalogowanegoUzytkownika());
+    }
 }
 
 int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
 {
+    idZalogowanegoUzytkownika = uzytkownikManager.pobierzIdZalogowanegoUzytkownika();
     return idZalogowanegoUzytkownika;
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
 {
-    uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+    uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika();
 }
 
 void KsiazkaAdresowa::dodajAdresata()
 {
-    adresatManager.dodajAdresata(idZalogowanegoUzytkownika);
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->dodajAdresata(); //Trzeba uzyc -> bo pracujemy na wskaznikach!
+    }
+    else
+    {
+        cout << "Aby dodac adresata, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+}
+
+void KsiazkaAdresowa::wylogujUzytkownika()
+{
+    uzytkownikManager.wylogowanieUzytkownika();
+    delete adresatManager; //Wszystkie zmiennie w obiekcie sa usuwane przez kompilator, my musimy usunac tylko wskaznik
+    adresatManager = NULL;
 }
 
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow()
 {
-    adresatManager.wyswietlWszystkichAdresatow();
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->wyswietlWszystkichAdresatow(); //Trzeba uzyc -> bo pracujemy na wskaznikach!
+    }
+    else
+    {
+        cout << "Aby wyswietlac adresatow, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+
 }
