@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "UzytkownikManager.h"
+#include "AdresatManager.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class KsiazkaAdresowa
 private :
 
     UzytkownikManager uzytkownikManager;
+    AdresatManager adresatManager;
     int idZalogowanegoUzytkownika;
 
 public :
@@ -21,6 +23,12 @@ public :
     void wylogujUzytkownika ()
     {
         idZalogowanegoUzytkownika = 0;
+        //~adresatManager();   Wylogowanie uzytkownika
     }
+
+    void dodajAdresata();
+    void wyswietlWszystkichAdresatow();
+
+
 
 };
