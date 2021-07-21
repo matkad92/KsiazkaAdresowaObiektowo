@@ -13,7 +13,6 @@ using namespace std;
 
 class AdresatManager
 {
-    int idZalogowanegoUzytkownika;
     static int idOstatniegoAdresata;/////Zainicjalizowac
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
@@ -23,10 +22,10 @@ class AdresatManager
     void wyswietlDaneAdresata(Adresat adresat);
 
 public :
-    AdresatManager(int przeslaneIdZalogowanegoUzytkownika);
+    AdresatManager();
     int dodajAdresata(int przeslaneIdZalogowanegoUzytkownika);
-    void wyswietlWszystkichAdresatow(int przeslaneIdZalogowanegoUzytkownika);
     void wyswietlWszystkichAdresatow();
+    void logowanieUzytkownika(int przeslaneIdZalogowanegoUzytkownika);
 
 
 };

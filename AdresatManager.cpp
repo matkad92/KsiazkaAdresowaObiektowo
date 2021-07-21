@@ -1,9 +1,13 @@
 #include "AdresatManager.h"
 
-AdresatManager::AdresatManager(int przeslaneIdZalogowanegoUzytkownika) : idZalogowanegoUzytkownika(przeslaneIdZalogowanegoUzytkownika)
+AdresatManager::AdresatManager() //: idZalogowanegoUzytkownika(przeslaneIdZalogowanegoUzytkownika)
 {
-
-    idOstatniegoAdresata = 0;
+   /* idOstatniegoAdresata = 0;
+    if (adresaci.empty() == true)
+    idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, przeslaneIdZalogowanegoUzytkownika);*/
+}
+void AdresatManager::logowanieUzytkownika(int przeslaneIdZalogowanegoUzytkownika)
+{
     if (adresaci.empty() == true)
     idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, przeslaneIdZalogowanegoUzytkownika);
 }
