@@ -11,6 +11,11 @@ void UzytkownikManager::rejestracjaUzytkownika()
     system("pause");
 
 }
+bool UzytkownikManager::czyUzytkownikJestZalogowany()
+{
+    if (idZalogowanegoUzytkownika > 0) return true;
+    else return false;
+}
 
 Uzytkownik UzytkownikManager::podajDaneNowegoUzytkownika()
 {
@@ -73,10 +78,6 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
     }
 }
 
-void UzytkownikManager::wczytajUzytkownikowZPliku()
-{
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
 
 int UzytkownikManager::logowanieUzytkownika()
 {
@@ -100,7 +101,8 @@ int UzytkownikManager::logowanieUzytkownika()
                 {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return itr -> pobierzId();
+                    idZalogowanegoUzytkownika = itr -> pobierzId();
+                    return idZalogowanegoUzytkownika;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -114,7 +116,22 @@ int UzytkownikManager::logowanieUzytkownika()
     return 0;
 }
 
-void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika(int przeslaneIdZalogowanegoUzytkownika)
+void UzytkownikManager::ustawIdZalogowanegoUzytkownika(int noweId)
+{
+    idZalogowanegoUzytkownika = noweId;
+}
+int UzytkownikManager::pobierzIdZalogowanegoUzytkownika ()
+{
+    return idZalogowanegoUzytkownika;
+}
+
+void UzytkownikManager::wylogowanieUzytkownika()
+{
+    idZalogowanegoUzytkownika = 0;
+}
+
+
+void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika()
 {
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
@@ -122,9 +139,9 @@ void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika(int przeslaneIdZalogo
 
     for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
     {
-        if (itr -> pobierzId() == przeslaneIdZalogowanegoUzytkownika)
+        if (itr -> pobierzId() == idZalogowanegoUzytkownika)
         {
-            itr -> ustawHaslo(noweHaslo); ///////////////????????????????????????
+            itr -> ustawHaslo(noweHaslo); //Czy ta funkcja jest dobrze?
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
         }
