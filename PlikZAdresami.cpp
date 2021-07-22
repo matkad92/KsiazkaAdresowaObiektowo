@@ -136,12 +136,105 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKre
     return liniaZDanymiAdresata;
 }
 
-/*bool PlikZAdresatami::czyPlikJestPusty()
+void  PlikZAdresatami::wyczyscIzapiszWszystkieKontaktyDoUsuwania(int idUsuwanegoAdresata)
 {
-    fstream plikTekstowy;
-    plikTekstowy.seekg(0, ios::end);
-    if (plikTekstowy.tellg() == 0)
-        return true;
-    else
-        return false;
-}*/
+    string linia;
+
+    int idZPlikuInt;
+
+    string imie, nazwisko, numerTelefonu, adresEmail, adresZamieszkania, idString, idUzytkownikaString, koniecLinii;
+
+    fstream plikKontaktow;
+    fstream plikKontaktowTymczasowych;
+    string nazwaTymczasowegoPlikuZKontaktami = "Adresaci_tymczasowy.txt";
+    plikKontaktow.open( pobierzNazwePliku().c_str(), ios::in );
+    plikKontaktowTymczasowych.open( nazwaTymczasowegoPlikuZKontaktami.c_str(), ios::out | ios::app);
+
+
+    while(!plikKontaktow.eof())
+    {
+
+        getline(plikKontaktow, idString, '|');
+        if (idString.empty()) break;
+        idZPlikuInt = atoi(idString.c_str());
+        getline(plikKontaktow, idUzytkownikaString, '|');
+        getline(plikKontaktow, imie, '|');
+        getline(plikKontaktow, nazwisko, '|');
+        getline(plikKontaktow, numerTelefonu, '|');
+        getline(plikKontaktow, adresEmail, '|');
+        getline(plikKontaktow, adresZamieszkania, '|');
+        getline(plikKontaktow, koniecLinii);
+
+
+        if (idZPlikuInt != idUsuwanegoAdresata)
+        {
+            plikKontaktowTymczasowych << idString << "|"<< idUzytkownikaString << "|" << imie << "|" << nazwisko << "|" << numerTelefonu << "|"
+                    << adresEmail << "|" << adresZamieszkania << "|" << endl;
+        }
+
+    }
+
+    plikKontaktow.close();
+    plikKontaktowTymczasowych.close();
+
+    remove( pobierzNazwePliku().c_str() );
+    rename( nazwaTymczasowegoPlikuZKontaktami.c_str(), pobierzNazwePliku().c_str() );
+}
+
+void PlikZAdresatami::wyczyscIzapiszWszystkieKontakty(vector <Adresat> &adresaci, int idDoEdycji)
+{
+    string linia;
+    int idZPlikuInt;
+
+    string imie, nazwisko, numerTelefonu, adresEmail, adresZamieszkania, idString, idUzytkownikaString, koniecLinii;
+
+    fstream plikKontaktow;
+    fstream plikKontaktowTymczasowych;
+    string nazwaTymczasowegoPlikuZKontaktami = "Adresaci_tymczasowy.txt";
+    plikKontaktow.open( pobierzNazwePliku().c_str(), ios::in );
+    plikKontaktowTymczasowych.open( nazwaTymczasowegoPlikuZKontaktami.c_str(), ios::out | ios::app);
+
+
+    while(!plikKontaktow.eof())
+    {
+
+        getline(plikKontaktow, idString, '|');
+        if (idString.empty()) break;
+        idZPlikuInt = atoi(idString.c_str());
+        getline(plikKontaktow, idUzytkownikaString, '|');
+        getline(plikKontaktow, imie, '|');
+        getline(plikKontaktow, nazwisko, '|');
+        getline(plikKontaktow, numerTelefonu, '|');
+        getline(plikKontaktow, adresEmail, '|');
+        getline(plikKontaktow, adresZamieszkania, '|');
+        getline(plikKontaktow, koniecLinii);
+
+
+        if (idZPlikuInt != idDoEdycji)
+        {
+            plikKontaktowTymczasowych << idString << "|"<< idUzytkownikaString << "|" << imie << "|" << nazwisko << "|" << numerTelefonu << "|"
+                    << adresEmail << "|" << adresZamieszkania << "|" << endl;
+        }
+
+        else if (idZPlikuInt == idDoEdycji)
+        {
+            for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+            {
+                if (itr -> pobierzId() == idDoEdycji)
+                {
+                    plikKontaktowTymczasowych << itr -> pobierzId() << "|"<< itr -> pobierzIdUzytkownika() << "|" << itr -> pobierzImie() << "|"
+                    << itr -> pobierzNazwisko() << "|" << itr -> pobierzNumerTelefonu() << "|"
+                    << itr -> pobierzEmail() << "|" << itr -> pobierzAdres() << "|" << endl;
+                }
+            }
+
+        }
+    }
+
+    plikKontaktow.close();
+    plikKontaktowTymczasowych.close();
+
+    remove( pobierzNazwePliku().c_str() );
+    rename( nazwaTymczasowegoPlikuZKontaktami.c_str(), pobierzNazwePliku().c_str() );
+}
+

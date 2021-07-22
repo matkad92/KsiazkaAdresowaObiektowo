@@ -15,13 +15,11 @@ using namespace std;
 
 class PlikZAdresatami : public PlikTekstowy
 {
-    //const string NAZWA_PLIKU_Z_ADRESATAMI;
     int idOstatniegoAdresata;
 
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
-    //bool czyPlikJestPusty();
 
 public:
     PlikZAdresatami(string przeslanaNazwaPlikuZAdresatami) : PlikTekstowy(przeslanaNazwaPlikuZAdresatami)
@@ -33,6 +31,8 @@ public:
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
     bool dopiszAdresataDoPliku(Adresat adresat);
     int pobierzIdOstatniegoAdresata();
+    void  wyczyscIzapiszWszystkieKontaktyDoUsuwania(int idUsuwanegoAdresata);
+    void wyczyscIzapiszWszystkieKontakty(vector <Adresat> &adresaci, int idDoEdycji);
 
 };
 

@@ -1,3 +1,2 @@
-1|3|Test1|Test1|test1|test1|test1|
 2|4|Adresat1|Nazwisko1|numer1|mail1|adres1|
-3|4|Adresat2|Numer 2 2 2|numer 333|asdasd|asd|
+3|4|Adresat2|noweNazwisko|numer 333|asdasd|asd|
