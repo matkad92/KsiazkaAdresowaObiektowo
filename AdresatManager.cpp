@@ -150,3 +150,260 @@ void AdresatManager::wyswietlDaneAdresata(Adresat adresat)
     cout << "Email:              " << adresat.pobierzEmail() << endl;
     cout << "Adres:              " << adresat.pobierzAdres()<< endl;
 }
+
+void  AdresatManager::usunAdresata()
+{
+
+    int idUsuwanegoAdresata, iloscZnalezionychKontaktow;
+    char potwierdzenieUsuniecia;
+
+    system ("cls");
+    cout << "Podaj id adresata, ktorego chcesz usunac:" << endl;
+    cin >> idUsuwanegoAdresata;
+    system ("cls");
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idUsuwanegoAdresata )
+        {
+            cout << "ID kontaktu: " << itr -> pobierzId()  << endl;
+            cout << "Imie: " << itr -> pobierzImie() << endl;
+            cout << "Nazwisko: " << itr -> pobierzNazwisko() << endl;
+            cout << "Numer telefonu: " <<  itr -> pobierzNumerTelefonu() << endl;
+            cout << "Adres zamieszkania: " <<  itr -> pobierzAdres() << endl;
+            cout << "Adres e-mail: " <<  itr -> pobierzEmail()<< endl << endl;
+
+            cout << "Prosze o potwierdzenie usuniecia poprzez wcisniecie klawisza  -  t" << endl;
+            cin >> potwierdzenieUsuniecia;
+
+
+            if (potwierdzenieUsuniecia == 't')
+            {
+                cout << endl;
+                adresaci.erase(itr);
+
+                plikZAdresatami.wyczyscIzapiszWszystkieKontaktyDoUsuwania(idUsuwanegoAdresata);
+
+                cout << "Adresat zostal poprawnie usuniety.";
+                getch();
+            }
+
+            else
+            {
+                cout << "Adresat nie zostal usuniety";
+                getch();
+                return;
+            }
+            iloscZnalezionychKontaktow++;
+        }
+    }
+
+
+    if (iloscZnalezionychKontaktow == 0)
+    {
+        cout << "Nie znaleziono adresata o podanym numerze id.";
+        getch();
+        return;
+    }
+}
+
+void AdresatManager::edytujAdresata()
+{
+    int idDoEdycji, iloscZnalezionychKontaktow;
+    char wybor;
+    iloscZnalezionychKontaktow = 0;
+    system ("cls");
+    cout << "Podaj id adresata, ktorego dane chcesz edytowac:" << endl;
+    cin >> idDoEdycji;
+    system ("cls");
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            cout << "ID kontaktu: " << itr -> pobierzId()  << endl;
+            cout << "Imie: " << itr -> pobierzImie() << endl;
+            cout << "Nazwisko: " << itr -> pobierzNazwisko() << endl;
+            cout << "Numer telefonu: " <<  itr -> pobierzNumerTelefonu() << endl;
+            cout << "Adres zamieszkania: " <<  itr -> pobierzAdres() << endl;
+            cout << "Adres e-mail: " <<  itr -> pobierzEmail()<< endl << endl;
+
+            cout << "Wybierz numer:" << endl;
+
+            cout << " 1. Edytuj imie" << endl;
+            cout << " 2. Edytuj nazwisko" << endl;
+            cout << " 3. Edytuj numer telefonu" << endl;
+            cout << " 4. Edytuj email" << endl;
+            cout << " 5. Edytuj adres" << endl;
+            cout << " 6. powrot do menu" << endl;
+
+            cin >> wybor;
+
+            if (wybor == '1')
+            {
+                cout << endl;
+                edytujImie(idDoEdycji);
+            }
+
+            if (wybor == '2')
+            {
+                cout << endl;
+                edytujNazwisko(idDoEdycji);
+            }
+
+            if (wybor == '3')
+            {
+                cout << endl;
+                edytujNumerTel(idDoEdycji);
+            }
+
+            if (wybor == '4')
+            {
+                cout << endl;
+                edytujEmail(idDoEdycji);
+            }
+
+            if (wybor == '5')
+            {
+                cout << endl;
+                edytujAdres(idDoEdycji);
+            }
+
+            if (wybor == '6')
+            {
+                return;
+            }
+
+            iloscZnalezionychKontaktow++;
+        }
+    }
+
+    if (iloscZnalezionychKontaktow == 0)
+    {
+        cout << "Nie znaleziono kontaktu o podanym numerze id.";
+        getch();
+        return;
+    }
+
+    return;
+}
+
+void  AdresatManager::edytujImie (int idDoEdycji)
+{
+    system ("cls");
+    string noweImie;
+    cout << "Podaj nowe imie:" << endl;
+
+    cin >> noweImie;
+
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            itr -> ustawImie(noweImie);
+        }
+    }
+
+    plikZAdresatami.wyczyscIzapiszWszystkieKontakty(adresaci, idDoEdycji);
+
+    cout << "Kontakt zostal aktualizowany";
+    getch();
+
+    return;
+}
+
+void  AdresatManager::edytujNazwisko (int idDoEdycji)
+{
+    system ("cls");
+    string noweNazwisko;
+    cout << "Podaj nowe nazwisko:" << endl;
+
+    cin >> noweNazwisko;
+
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            itr -> ustawNazwisko(noweNazwisko);
+        }
+    }
+
+    plikZAdresatami.wyczyscIzapiszWszystkieKontakty(adresaci, idDoEdycji);
+
+    cout << "Kontakt zostal aktualizowany";
+    getch();
+
+    return;
+}
+
+
+void  AdresatManager::edytujNumerTel (int idDoEdycji)
+{
+    system ("cls");
+    string noweNumer;
+    cout << "Podaj nowy numer telefonu:" << endl;
+
+    cin >> noweNumer;
+
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            itr -> ustawNumerTelefonu(noweNumer);
+        }
+    }
+
+    plikZAdresatami.wyczyscIzapiszWszystkieKontakty(adresaci, idDoEdycji);
+
+    cout << "Kontakt zostal aktualizowany";
+    getch();
+
+    return;
+}
+
+void  AdresatManager::edytujEmail (int idDoEdycji)
+{
+    system ("cls");
+    string nowyEmail;
+    cout << "Podaj nowy e-mail:" << endl;
+
+    cin >> nowyEmail;
+
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            itr -> ustawEmail(nowyEmail);
+        }
+    }
+
+    plikZAdresatami.wyczyscIzapiszWszystkieKontakty(adresaci, idDoEdycji);
+
+    cout << "Kontakt zostal aktualizowany";
+    getch();
+
+    return;
+}
+
+
+void  AdresatManager::edytujAdres (int idDoEdycji)
+{
+    system ("cls");
+    string nowyAdres;
+    cout << "Podaj nowy adres zamieszkania:" << endl;
+
+    cin >> nowyAdres;
+
+    for (vector<Adresat>::iterator itr = adresaci.begin(), koniec = adresaci.end(); itr != koniec; ++itr)
+    {
+        if (itr -> pobierzId() == idDoEdycji)
+        {
+            itr -> ustawAdres(nowyAdres);
+        }
+    }
+
+    plikZAdresatami.wyczyscIzapiszWszystkieKontakty(adresaci, idDoEdycji);
+
+    cout << "Kontakt zostal aktualizowany";
+    getch();
+
+    return;
+}

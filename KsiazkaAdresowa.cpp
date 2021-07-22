@@ -133,7 +133,7 @@ void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku()
 {
     if (uzytkownikManager.czyUzytkownikJestZalogowany())
     {
-        adresatManager->wyszukajAdresatowPoNazwisku(); //Trzeba uzyc -> bo pracujemy na wskaznikach!
+        adresatManager->wyszukajAdresatowPoNazwisku();
     }
     else
     {
@@ -141,4 +141,30 @@ void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku()
         system("pause");
     }
 
+}
+
+void KsiazkaAdresowa::usunAdresata()
+{
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->usunAdresata();
+    }
+    else
+    {
+        cout << "Nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+}
+
+void KsiazkaAdresowa::edytujAdresata()
+{
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->edytujAdresata();
+    }
+    else
+    {
+        cout << "Nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
 }

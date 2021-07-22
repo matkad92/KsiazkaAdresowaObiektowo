@@ -6,6 +6,7 @@
 #include <windows.h>
 #include <fstream>
 #include <sstream>
+#include <conio.h>
 #include "Adresat.h"
 #include "PlikZAdresami.h"
 
@@ -20,6 +21,12 @@ class AdresatManager
 
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
+    void  edytujImie (int idDoEdycji);
+    void  edytujNazwisko (int idDoEdycji);
+    void  edytujNumerTel (int idDoEdycji);
+    void  edytujEmail (int idDoEdycji);
+    void  edytujAdres (int idDoEdycji);
+
 
 public :
     AdresatManager(string nazwaPlikuZAdresatami,int idZalogowanegoUzytkownika)
@@ -35,6 +42,8 @@ public :
     void wyszukajAdresatowPoImieniu();
     void wyszukajAdresatowPoNazwisku();
     void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+    void usunAdresata();
+    void edytujAdresata();
 
 
 };
