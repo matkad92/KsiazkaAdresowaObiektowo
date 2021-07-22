@@ -115,3 +115,30 @@ void KsiazkaAdresowa::wyswietlWszystkichAdresatow()
     }
 
 }
+
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu()
+{
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->wyszukajAdresatowPoImieniu(); //Trzeba uzyc -> bo pracujemy na wskaznikach!
+    }
+    else
+    {
+        cout << "Aby wyswietlac adresatow, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+
+}
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku()
+{
+    if (uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->wyszukajAdresatowPoNazwisku(); //Trzeba uzyc -> bo pracujemy na wskaznikach!
+    }
+    else
+    {
+        cout << "Aby wyswietlac adresatow, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+
+}

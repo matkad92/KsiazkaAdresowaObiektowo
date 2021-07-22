@@ -32,6 +32,10 @@ public :
     void logowanieUzytkownika(int przeslaneIdZalogowanegoUzytkownika);
     void wczytajAdresatowZalogowanegoUzytkownika(int przeslaneIdZalogowanegoUzytkownika);
 
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+
 
 };
 
