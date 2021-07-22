@@ -29,5 +29,8 @@ public :
     void wylogujUzytkownika();
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
+    bool czyUzytkownikJestZalogowany();
+    char wybierzOpcjeZMenuGlownego();
+    char wybierzOpcjeZMenuUzytkownika();
 
 };
