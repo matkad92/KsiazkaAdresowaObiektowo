@@ -3,6 +3,7 @@
 KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
 : uzytkownikManager(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
 {
+    idZalogowanegoUzytkownika = 0;
     adresatManager = NULL; //trzeba od razu w konstruktorze na null ustawiac
 }
 
@@ -13,7 +14,7 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
 
 bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
 {
-    if (idZalogowanegoUzytkownika > 0) return true;
+    if (uzytkownikManager.pobierzIdZalogowanegoUzytkownika() == 0) return true;
     else return false;
 }
 
