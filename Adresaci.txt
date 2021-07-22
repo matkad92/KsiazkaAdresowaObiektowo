@@ -1,0 +1,2 @@
+2|4|Adresat1|Nazwisko1|numer1|mail1|adres1|
+3|4|Adresat2|noweNazwisko|numer 333|asdasd|asd|
