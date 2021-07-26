@@ -1,2 +1,5 @@
-2|4|Adresat1|Nazwisko1|numer1|mail1|adres1|
-3|4|Adresat2|noweNazwisko|numer 333|asdasd|asd|
+1|2|Wojtek1|Wojtek1|wojtek1|wojtek1|wojtek1|
+2|2|Wojtek2|Wojtek2|wojtek2|wojtek2|wojtek2|
+3|1|Mateusz1|Mateusz1|mateusz1|mateusz1|mateusz1|
+4|1|Mateusz2|Mateusz2|mateusz2|mateusz2|mateusz2|
+5|3|Artur1|Artur2|artur3|artur4|artur5|
